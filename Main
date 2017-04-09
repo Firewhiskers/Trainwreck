@@ -1,0 +1,28 @@
+/*
+Code to use a radar sensor to detect an object and set off a buzzer when an object gets too close. 
+
+*/
+
+
+// the setup function runs once when you press reset or power the board
+void setup() {
+  // initialize digital pin LED_BUILTIN as an output.
+  pinMode(1, OUTPUT);
+  pinMode(3, OUTPUT);
+  Serial.begin(9600);
+}
+
+// the loop function runs over and over again forever
+void loop() {
+  int sensorValue = analogRead(A3);
+  Serial.println(sensorValue);
+  
+  if (sensorValue > 785)
+  {
+    digitalWrite(1, HIGH);   // turn the LED on (HIGH is the voltage level)
+    digitalWrite(3, HIGH);   // turn the LED on (HIGH is the voltage level)
+    delay(50);                       // wait for 0.1 seconds
+    digitalWrite(3, LOW);   // turn the LED on (HIGH is the voltage level)
+    delay(2000);  //wait one seconds before another detection
+    digitalWrite(1, LOW);   // turn the LED on (HIGH is the voltage level)
+  }
